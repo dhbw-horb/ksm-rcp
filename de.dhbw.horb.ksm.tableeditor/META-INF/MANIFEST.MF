@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: KSM TableEditor
+Bundle-SymbolicName: de.dhbw.horb.ksm.tableeditor;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Fragment-Host: de.dhbw.horb.ksm.core;bundle-version="1.0.0.qualifier"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ClassPath: .
+Require-Bundle: org.eclipse.core.boot;bundle-version="3.1.200"

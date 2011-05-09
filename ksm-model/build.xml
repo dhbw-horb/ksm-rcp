@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="ksm-datamodel" default="package" basedir=".">
+	<property name="project.name" value="ksm-model" />
+	<property name="project.version" value="1" />
+
+	<filelist id="classpath.compile">
+		<file name="lib/jaxb-api.jar" />
+	</filelist>
+
+	<filelist id="classpath.test">
+		<file name="lib/jaxb-api.jar" />
+		<file name="lib/jaxb-impl.jar" />
+		<file name="lib/junit-4.8.2.jar" />
+		<file name="lib/hamcrest.jar" />
+		<file name="lib/mockito-all-1.8.5.jar" />
+		<file name="bin" />
+		<file name="bin-test" />
+	</filelist>
+
+	<taskdef name="xjc" classname="com.sun.tools.xjc.XJCTask">
+		<classpath>
+			<fileset dir="lib" includes="*.jar" />
+		</classpath>
+	</taskdef>
+
+	<target name="clean" description="Säubert das Projektverzeichnis von temporären Daten">
+		<delete dir="bin" />
+		<delete dir="bin-test" />
+		<delete dir="test-results" />
+	</target>
+
+	<target name="compile" description="Kompiliert die Java Units">
+		<mkdir dir="bin" />
+		<javac srcdir="src" destdir="bin" includeantruntime="false">
+			<classpath>
+				<filelist refid="classpath.compile" />
+			</classpath>
+		</javac>
+	</target>
+
+	<target name="package" depends="clean,compile" description="Erzeugt ein Java Archive zum Verteilen der Library">
+		<jar destfile="${project.name}-${project.version}.jar">
+			<fileset dir="bin" includes="**/*" />
+		</jar>
+	</target>
+
+	<target name="test" depends="compile" description="Lässt junit-Tests laufen">
+		<mkdir dir="bin-test" />
+		<mkdir dir="test-results" />
+		<javac srcdir="test" destdir="bin-test" includeantruntime="false">
+			<classpath>
+				<filelist refid="classpath.test" />
+			</classpath>
+		</javac>
+		<junit showoutput="true">
+			<classpath>
+				<filelist refid="classpath.test" />
+			</classpath>
+			<batchtest todir="test-results">
+				<fileset dir="bin-test" includes="**/Test*" />
+				<formatter type="plain" />
+			</batchtest>
+		</junit>
+	</target>
+
+	<target name="compile-xml" description="Kompiliert das XML-Schema zu Java Klassen">
+		<delete failonerror="false">
+			<fileset dir="src/de/dhbw/horb/ksm/model/generated" />
+		</delete>
+		<xjc schema="xml/ksm-${project.version}.xsd" destdir="src" package="de.dhbw.horb.ksm.model.generated" />
+	</target>
+</project>

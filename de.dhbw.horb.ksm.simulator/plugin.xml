@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            allowMultiple="false"
+            category="ksm.core.views.KSMCategory"
+            class="de.dhbw.horb.simulator.view.SimulatorView"
+            icon="icons/16/ksm-simulator.png"
+            id="ksm.simulator.views.SimulatorView"
+            name="Simulator"
+            restorable="true">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            class="de.dhbw.horb.simulator.perspective.SimulatorPerspective"
+            fixed="true"
+            icon="icons/32/ksm-simulator.png"
+            id="ksm.simulator.perspectives.SimulatorPerspective"
+            name="Simulator">
+      </perspective>
+   </extension>
+</plugin>

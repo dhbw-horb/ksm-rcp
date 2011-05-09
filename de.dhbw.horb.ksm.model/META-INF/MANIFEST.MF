@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Model
+Bundle-SymbolicName: de.dhbw.horb.ksm.model
+Bundle-Version: 1.0.0
+Export-Package: de.dhbw.horb.ksm.model.api,
+ de.dhbw.horb.ksm.model.generated,
+ de.dhbw.horb.ksm.model.impl
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

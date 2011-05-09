@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<fragment>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            category="ksm.core.views.KSMCategory"
+            class="de.dhbw.horb.tableeditor.view.TableEditorView"
+            icon="icons/16/ksm-tableeditor.png"
+            id="de.dhbw.horb.ksm.tableditor.view"
+            name="Table Editor"
+            restorable="true">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            class="de.dhbw.horb.tableeditor.perspective.TableEditorPerspective"
+            fixed="true"
+            icon="icons/32/ksm-tableeditor.png"
+            id="ksm.tableeditor.perspectives.TableEditorPerspective"
+            name="Table Editor">
+         <description>
+            Table Editor Perspective
+         </description>
+      </perspective>
+   </extension>
+</fragment>

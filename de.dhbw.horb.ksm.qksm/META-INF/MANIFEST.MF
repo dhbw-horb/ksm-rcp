@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Qksm
+Bundle-SymbolicName: de.dhbw.horb.ksm.qksm;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: de.dhbw.horb.ksm.qksm.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ de.dhbw.horb.ksm.core;bundle-version="1.0.0"
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

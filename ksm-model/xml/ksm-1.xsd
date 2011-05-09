@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.ba-horb.de/~ksm/xml/ksm-1"
+	xmlns:tns="http://www.ba-horb.de/~ksm/xml/ksm-1" elementFormDefault="qualified"
+	xmlns:jxb="http://java.sun.com/xml/ns/jaxb" jxb:version="1.0">
+
+	<!-- Wurzelelement eines KSM Dokument -->
+	<element name="ksm">
+		<complexType>
+			<annotation>
+				<appinfo>
+					<jxb:class name="XKSM" />
+				</appinfo>
+			</annotation>
+			<sequence>
+				<element name="nodegroup" type="tns:NODEGROUP_TYPE"
+					minOccurs="1" maxOccurs="1">
+				</element>
+				<element name="properties" type="tns:PROPERTIES_TYPE"
+					minOccurs="0" maxOccurs="1"></element>
+			</sequence>
+			<attribute name="version" type="string" use="required" />
+		</complexType>
+	</element>
+
+	<complexType name="PROPERTY_BASE_TYPE">
+		<annotation>
+			<appinfo>
+				<jxb:class name="XPropertyBase" />
+			</appinfo>
+		</annotation>
+		<simpleContent>
+			<extension base="anySimpleType">
+				<attribute name="name" use="required" />
+			</extension>
+		</simpleContent>
+	</complexType>
+
+	<complexType name="PROPERTY_STRING_TYPE">
+		<annotation>
+			<appinfo>
+				<jxb:class name="XPropertyString" />
+			</appinfo>
+		</annotation>
+		<simpleContent>
+			<extension base="string">
+				<attribute name="name" use="required" />
+			</extension>
+		</simpleContent>
+	</complexType>
+
+	<complexType name="PROPERTY_BOOLEAN_TYPE">
+		<annotation>
+			<appinfo>
+				<jxb:class name="XPropertyBoolean" />
+			</appinfo>
+		</annotation>
+		<simpleContent>
+			<extension base="boolean">
+				<attribute name="name" use="required" />
+			</extension>
+		</simpleContent>
+	</complexType>
+
+	<complexType name="PROPERTY_DECIMAL_TYPE">
+		<annotation>
+			<appinfo>
+				<jxb:class name="XPropertyDecimal" />
+			</appinfo>
+		</annotation>
+		<simpleContent>
+			<extension base="decimal">
+				<attribute name="name" use="required" />
+			</extension>
+		</simpleContent>
+	</complexType>
+
+	<complexType name="PROPERTY_INTEGER_TYPE">
+		<annotation>
+			<appinfo>
+				<jxb:class name="XPropertyInteger" />
+			</appinfo>
+		</annotation>
+		<simpleContent>
+			<extension base="integer">
+				<attribute name="name" use="required" />
+			</extension>
+		</simpleContent>
+	</complexType>
+
+	<complexType name="PROPERTY_LIST_BASE_TYPE">
+		<annotation>
+			<appinfo>
+				<jxb:class name="XPropertyBaseList" />
+			</appinfo>
+		</annotation>
+		<sequence>
+		</sequence>
+		<attribute name="name" use="required"></attribute>
+	</complexType>
+
+	<complexType name="PROPERTY_STRING_LIST_TYPE">
+		<annotation>
+			<appinfo>
+				<jxb:class name="XPropertyStringList" />
+			</appinfo>
+		</annotation>
+		<complexContent>
+			<extension base="tns:PROPERTY_LIST_BASE_TYPE">
+				<sequence>
+					<element name="value" type="string" minOccurs="0"
+						maxOccurs="unbounded" />
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<complexType name="PROPERTY_DECIMAL_LIST_TYPE">
+		<annotation>
+			<appinfo>
+				<jxb:class name="XPropertyDecimalList" />
+			</appinfo>
+		</annotation>
+		<complexContent>
+			<extension base="tns:PROPERTY_LIST_BASE_TYPE">
+				<sequence>
+					<element name="value" type="decimal" minOccurs="0"
+						maxOccurs="unbounded" />
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="PROPERTY_INTEGER_LIST_TYPE">
+		<annotation>
+			<appinfo>
+				<jxb:class name="XPropertyIntegerList" />
+			</appinfo>
+		</annotation>
+		<complexContent>
+			<extension base="tns:PROPERTY_LIST_BASE_TYPE">
+				<sequence>
+					<element name="value" type="integer" minOccurs="0"
+						maxOccurs="unbounded" />
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<!-- EinelListe von Eigenschaften -->
+	<complexType name="PROPERTIES_TYPE">
+		<annotation>
+			<appinfo>
+				<jxb:class name="XProperties" />
+			</appinfo>
+		</annotation>
+		<sequence>
+			<element name="string" type="tns:PROPERTY_STRING_TYPE"
+				minOccurs="0" maxOccurs="unbounded" />
+			<element name="decimal" type="tns:PROPERTY_DECIMAL_TYPE"
+				minOccurs="0" maxOccurs="unbounded" />
+			<element name="integer" type="tns:PROPERTY_INTEGER_TYPE"
+				minOccurs="0" maxOccurs="unbounded" />
+			<element name="boolean" type="tns:PROPERTY_BOOLEAN_TYPE"
+				minOccurs="0" maxOccurs="unbounded" />
+			<element name="stringList" type="tns:PROPERTY_STRING_LIST_TYPE"
+				minOccurs="0" maxOccurs="unbounded" />
+			<element name="decimalList" type="tns:PROPERTY_DECIMAL_LIST_TYPE"
+				minOccurs="0" maxOccurs="unbounded" />
+			<element name="integerList" type="tns:PROPERTY_INTEGER_LIST_TYPE"
+				minOccurs="0" maxOccurs="unbounded" />
+		</sequence>
+	</complexType>
+
+	<!-- KSM Node (Knoten), hat Eigenschaften, hat Verbindungen zu anderen Knoten -->
+	<complexType name="NODE_TYPE">
+		<annotation>
+			<appinfo>
+				<jxb:class name="XNode" />
+			</appinfo>
+		</annotation>
+		<sequence>
+			<element name="properties" type="tns:PROPERTIES_TYPE"
+				minOccurs="1" maxOccurs="1" />
+			<element name="connections" type="tns:CONNECTIONS_TYPE"
+				minOccurs="0" maxOccurs="1" />
+		</sequence>
+		<attribute name="id" type="tns:NODE_ID_TYPE" use="required" />
+	</complexType>
+
+	<!-- Eine NodeGroup fasst mehrere Knoten zusammen, auch bekannt als Hirachien -->
+	<complexType name="NODEGROUP_TYPE">
+		<annotation>
+			<appinfo>
+				<jxb:class name="XNodeGroup" />
+			</appinfo>
+		</annotation>
+		<sequence>
+			<element name="node" type="tns:NODE_TYPE" minOccurs="0"
+				maxOccurs="unbounded" />
+			<element name="nodegroup" type="tns:NODEGROUP_TYPE"
+				minOccurs="0" maxOccurs="unbounded"></element>
+			<element name="properties" type="tns:PROPERTIES_TYPE"
+				minOccurs="1" maxOccurs="1" />
+		</sequence>
+		<attribute name="id" type="tns:NODE_ID_TYPE" use="required" />
+	</complexType>
+
+	<!-- Connections. Eine Node eine beliebige Anzahl gerichteter Verbindungen
+		zu einer anderen Node haben -->
+	<complexType name="CONNECTIONS_TYPE">
+		<annotation>
+			<appinfo>
+				<jxb:class name="XConnections" />
+			</appinfo>
+		</annotation>
+		<sequence>
+			<element name="connection" type="tns:CONNECTION_TYPE"
+				minOccurs="0" maxOccurs="unbounded" />
+		</sequence>
+	</complexType>
+
+	<!-- Eine gerichtete Verbindung zu einer anderen Node. -->
+	<complexType name="CONNECTION_TYPE">
+		<annotation>
+			<appinfo>
+				<jxb:class name="XConnection" />
+			</appinfo>
+		</annotation>
+		<sequence>
+			<element name="properties" type="tns:PROPERTIES_TYPE"
+				minOccurs="1" maxOccurs="1" />
+		</sequence>
+		<attribute name="to" type="tns:NODE_ID_TYPE" />
+	</complexType>
+
+	<simpleType name="NODE_ID_TYPE">
+		<restriction base="string"></restriction>
+	</simpleType>
+</schema>
