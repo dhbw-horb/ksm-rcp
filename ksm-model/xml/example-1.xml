@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<ksm xmlns="http://hb.dhbw-stuttgart.de/~ksm/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://hb.dhbw-stuttgart.de/~ksm/1.0 ksm-1.0.xsd"
+<ksm xmlns="http://www.ba-horb.de/~ksm/xml/ksm-1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.ba-horb.de/~ksm/xml/ksm-1 ksm-1.xsd"
 	version="1.0">
 	<nodegroup id="root">
 		<node id="56-7567-567567-657657-567">
