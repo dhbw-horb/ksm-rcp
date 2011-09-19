@@ -1,6 +1,8 @@
-Dokumentation
-=============
+KSM-RCP
+=======
 
-- 2010/2011 https://github.com/dhbw-horb/studienarbeit-2011-fischer-eclipse-ksm[Fischer]
-- Du?
+Entwicklung eines KSM-Editor auf Basis von Eclipse RCP.
 
+- 2010/2011 https://github.com/dhbw-horb/studienarbeit-2011-fischer-eclipse-ksm[Studienarbeit Fischer]
+
+Projektwebsite: http://www.ba-horb.de/~ksm/
